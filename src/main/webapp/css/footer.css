@@ -1,0 +1,28 @@
+/* footer.css */
+
+/* Garantizar que footer se pegue al fondo si el contenido es corto */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  background-color: var(--accent-color, #2c3e50);
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 14px;
+  border-top: 2px solid #1abc9c;
+}
+
+footer p {
+  margin: 0;
+  line-height: 1.5;
+}

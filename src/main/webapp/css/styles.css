@@ -1,0 +1,93 @@
+/* styles.css */
+
+/* 1. Variables globales */
+:root {
+  --background-color: #FBE9DB;
+  --primary-color:    #D55672;
+  --secondary-color:  #ADF5FF;
+  --text-color:       #481620;
+  --accent-color:     #0075A2;
+}
+
+/* 2. Estilos base para todo el sitio */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  color: #333;
+}
+
+/* Botones redondeados y con transición */
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  background-color: var(--accent-color);
+}
+
+/* Formularios: card centrado con sombra */
+form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Inputs y selects en formularios */
+input:focus, select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 4px var(--primary-color);
+}
+
+.is-invalid {
+  border-color: var(--primary-color);
+}
+
+.is-valid {
+  border-color: var(--secondary-color);
+}
+
+.feedback {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+}
+
+/* Para íconos de spa, clientes, etc. si los usas */
+.icon-spa {
+  height: 40px;
+  width: 40px;
+}
+
+/* Para mensajes de registro exitoso */
+.success-registry {
+  color: var(--accent-color);
+}
+
+/* Para tablas responsive */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Misceláneos */
+a {
+  text-decoration: none;
+}

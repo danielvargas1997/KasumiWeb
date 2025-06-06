@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <!-- 1. Página de bienvenida: cuando accedas a /KasumiWeb/, se cargará login.jsp -->
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+<!-- Mapeo de Jersey para exponer servicios REST en /resources/* -->
+<servlet>
+    <servlet-name>jakarta-rest-servlet</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+        <!-- paquete base donde buscar clases con @Path -->
+        <param-name>jersey.config.server.provider.packages</param-name>
+        <param-value>com.mycompany.kasumiweb.resources</param-value>
+    </init-param>
+    <!-- Por cada petición GET/POST/etc. a /KasumiWeb/resources/*, 
+         Jersey buscará clases en com.mycompany.kasumiweb.resources con @Path -->
+    <load-on-startup>1</load-on-startup>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>jakarta-rest-servlet</servlet-name>
+    <url-pattern>/resources/*</url-pattern>
+</servlet-mapping>
+
+    <!-- 2. Si NO usas anotaciones @WebServlet, mapea tus servlets aquí. 
+         En este ejemplo asumimos que sí usas @WebServlet en cada clase, 
+         así que no es estrictamente necesario definirlos de nuevo. -->
+
+    <!--
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>co.kasumi.controlador.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>co.kasumi.controlador.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClienteServlet</servlet-name>
+        <servlet-class>co.kasumi.controlador.ClienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClienteServlet</servlet-name>
+        <url-pattern>/ClienteServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServicioServlet</servlet-name>
+        <servlet-class>co.kasumi.controlador.ServicioServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServicioServlet</servlet-name>
+        <url-pattern>/ServicioServlet</url-pattern>
+    </servlet-mapping>
+    -->
+
+    <!-- 3. (Opcional) Parámetros de contexto para JDBC 
+         Si prefieres inyectar la URL, usuario y contraseña desde web.xml, 
+         puedes definirlos aquí y luego leerlos en DbUtil. -->
+    <context-param>
+        <param-name>jdbcURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/KasumiDB?useSSL=false&amp;serverTimezone=UTC</param-value>
+    </context-param>
+    <context-param>
+        <param-name>jdbcUser</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>jdbcPass</param-name>
+        <param-value>tu_contraseña</param-value>
+    </context-param>
+
+</web-app>
+
